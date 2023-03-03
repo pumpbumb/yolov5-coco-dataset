@@ -27,6 +27,7 @@ count += 1
 # 开始随机分配一部分到另一个文件，按 8:2 的比例
 oldf = open('coco_train.txt', 'r', encoding='utf-8')  # 要被抽取的文件coco_train.txt
 newf = open('coco_val.txt', 'w', encoding='utf-8')  # 抽取的 8:2 行写入 coco_val.txt
+f_temp = open('temp.txt', 'w', encoding='utf-8')  # 中间文件
 
 # # sample(x,y)函数的作用是从序列x中，随机选择y个不重复的元素
 resultList = random.sample(range(1, count), int((count - 1) * 0.2))
@@ -37,22 +38,12 @@ for line in oldf.readlines():
     num += 1
     if num in resultList:
         newf.writelines(line)
+        continue
+    f_temp.writelines(line)
 
 oldf.close()
 newf.close()
-
-# 再删除已经写入验证集的行
-num = 0
-f1 = open("coco_train.txt", "r")
-f2 = open("temp.txt", "w")
-for line in f1.readlines():  # 依次读取每行
-    num += 1
-    if num in resultList:
-        continue
-    f2.writelines(line)
-
-f1.close()
-f2.close()
+f_temp.close()
 
 os.remove("coco_train.txt")
 os.rename("temp.txt", "coco_train.txt")
