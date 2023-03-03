@@ -24,13 +24,13 @@ with open('coco_train.txt', 'r', encoding='utf-8') as f:
 print('文件行数为：', count)
 count += 1
 
-# 开始随机分配一部分到另一个文件，按 8:2 的比例
+# 开始随机分配 每行内容 到两个文件，按 8:2 的比例
 oldf = open('coco_train.txt', 'r', encoding='utf-8')  # 要被抽取的文件coco_train.txt
 newf = open('coco_val.txt', 'w', encoding='utf-8')  # 抽取的 8:2 行写入 coco_val.txt
 f_temp = open('temp.txt', 'w', encoding='utf-8')  # 中间文件
 
 # # sample(x,y)函数的作用是从序列x中，随机选择y个不重复的元素
-resultList = random.sample(range(1, count), int((count - 1) * 0.2))
+resultList = random.sample(range(1, count), int((count - 1) * 0.2))  # 0.2
 print(resultList, len(resultList))
 
 num = 0
