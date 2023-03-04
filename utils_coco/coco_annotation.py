@@ -8,7 +8,7 @@ from collections import defaultdict
 from pathlib import Path
 
 FILE = Path(__file__).resolve()
-ROOT = FILE.parents[1]  # YOLOv5 root directory
+ROOT = FILE.parents[3]  # YOLOv5 root directory
 if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))  # add ROOT to PATH
 # ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative
@@ -17,25 +17,22 @@ print(ROOT)
 # -------------------------------------------------------#
 #   指向了COCO训练集与验证集图片的路径
 # -------------------------------------------------------#
-# train_datasets_path = ROOT / "coco_dataset/train2017"
-# 由于 train2017 有 11万多张，所有这里利用脚本划分出了mini版，只有 3万张
-train_datasets_path = ROOT / "coco_dataset_mini/mini_train2017"
+# 由于 train2017 有 11万多张，所有这里可以利用脚本划分出了mini版，只有 3万张
+train_datasets_path = ROOT / "dataset/COCO/COCO2017/train2017"
 
-val_datasets_path = ROOT / "coco_dataset/val2017"
+val_datasets_path = ROOT / "dataset/COCO/COCO2017/val2017"
 
 # -------------------------------------------------------#
 #   指向了COCO训练集与验证集标签的路径
 # -------------------------------------------------------#
-# train_annotation_path = ROOT / "coco_dataset/trainval_annotations/instances_train2017.json"
-train_annotation_path = ROOT / "coco_dataset_mini/mini_instances_train2017.json"
-
-val_annotation_path = ROOT / "coco_dataset/trainval_annotations/instances_val2017.json"
+train_annotation_path = ROOT / "dataset/COCO/COCO2017/trainval_annotations/instances_train2017.json"
+val_annotation_path = ROOT / "dataset/COCO/COCO2017/trainval_annotations/instances_val2017.json"
 
 # -------------------------------------------------------#
 #   生成的txt文件路径
 # -------------------------------------------------------#
-train_output_path = ROOT / "utils_coco/coco_train.txt"
-val_output_path = ROOT / "utils_coco/coco_val.txt"
+train_output_path = ROOT / "projects/yolov5-coco-dataset/utils_coco/coco_train.txt"
+val_output_path = ROOT / "projects/yolov5-coco-dataset/utils_coco/coco_val.txt"
 
 if __name__ == "__main__":
     name_box_id = defaultdict(list)
